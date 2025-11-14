@@ -25,7 +25,7 @@ def start_simple_client():
 
     # Step 3: Send a message to the server
     message = "Hello, from the client!"
-    client_socket.send(message).encode('utf-8')
+    client_socket.send(message.encode('utf-8'))
     print(f"[SENT] Sent message: {message}")
 
     # Step 4: Receive response from server
