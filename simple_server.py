@@ -17,8 +17,8 @@ def start_simple_server():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # Step 2: Bind to address and port
-    host = '127.0.0.1'
-    port = 5555
+    host = '127.0.0.1'  # localhost (your own computer)
+    port = 5555         # Port number (choose between 1024-65535)
 
     print(f"[SETUP] Creating server on {host}:{port}")
     server_socket.bind((host, port))
