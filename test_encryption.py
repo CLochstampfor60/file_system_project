@@ -1,9 +1,6 @@
 # test_encryption.py
-
-"""
-Secure File Sharing System - Server
-CYSE 250 Milestone Project
-"""
+# Secure File Sharing System - Server
+# CYSE 250 Milestone Project
 
 import socket
 import os
@@ -20,7 +17,6 @@ def caesar_encrypt(text, shift=3):
     # 4. Handle wrap-around (Z + 3 = C)
 
     result = ""
-
     for char in text:
         if char.isalpha():
              # Determine if uppercase or lowercase
@@ -30,14 +26,11 @@ def caesar_encrypt(text, shift=3):
         else:
              # Keep non-alphabetic characters unchanged
             result += char
-
     return result
 
 def caesar_decrypt(text, shift=3):
     # Decrypts Caesar cipher text.
-
     return caesar_encrypt(text, -shift)
-
 
 
 def main():

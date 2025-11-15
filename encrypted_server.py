@@ -10,27 +10,71 @@ import socket
 # ============================================================================
 
 def caesar_encrypt(text, shift=3):
-    pass
+    # Encrypts text using Ceasar cipher.
+    for char in text:
+        if char.isalpha():
+            shift_base = ord('A') if char.isupper() else ord('a')
+            result += chr((ord(char) - shift_base + shift) % 26 + shift_base)
+        else:
+            result += char
+    return result    
 
 def caesar_decrypt(text, shift=3):
-    pass
+    # Decrypts Caesar cipher text.
+    return caesar_encrypt(text, -shift)
 
 # ============================================================================
 # NETWORK FUNCTIONS WITH ENCRYPTION
 # ============================================================================
 
 def send_encrypted(sock, message):
-    pass
-
+    # Encrypts a message and sends it.
+    encrypted = caesar_encrypt(message)
+    sock.send(encrypted.encode('utf-8'))
+    print(f"[ENCRYPTED] '{message}'  → '{encrypted}'")
 
 def receive_encrypted(sock):
-    pass
+    # Receives and decrypts a message.
+    encrypted_bytes = sock.recv(1024)
+    encrypted = encrypted_bytes.decde('utf-8')
+    decrypted = caesar_decrypt(encrypted)
+    print(f"[DECRYPTED] '{encrypted}'  → '{decrypted}'")
+    return decrypted
 
 # ============================================================================
 # MAIN SERVER
 # ============================================================================
 
 def start_encrypted_server():
+    # Create socket
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Bind to address
+    host = '127.0.0.1'
+    port = 5555
+
+    print(f"[SETUP] Creating server on {host}:{port}")
+    server_socket.bind((host, port))
+
+    # Listen for connections
+    server_socket.listen(1)
+    print(f"[LISTENING] Server is waiting for encrypted connection...")
+
+    # Accept connection
+    client_socket, client_address = server_socket.accept()
+    print(f"[CONNECTED] Client connected from {client_address}")
+
+    # Receive encrypted message
+    print(f"")
+
+    # Send encrypted response
+
+
+    # Close connections
+    client_socket.close()
+    server_socket.close()
+    print(f"\n[CLOSED] Server shutdown or offline.")
+
     pass
 
 
@@ -40,8 +84,6 @@ def main():
     print("ENCRYPTED SOCKET SERVER")
     print("=" * 60)
     start_encrypted_server()
-    pass
-
 
 if __name__ == "__main__":
     main()
