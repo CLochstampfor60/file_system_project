@@ -65,19 +65,19 @@ def start_encrypted_server():
     print(f"[CONNECTED] Client connected from {client_address}")
 
     # Receive encrypted message
-    print(f"")
+    print(f"\n[RECEIVING] Waiting for encrypted message...")
+    message = receive_encrypted(client_socket)
+    print(f"[FINAL] Client's decrypted message: {message}")
 
     # Send encrypted response
-
+    response = "Hello, from encrypted server! Your message was received securely."
+    print(f"\n[SENDING] Original response: {response}")
+    send_encrypted(client_socket, response)
 
     # Close connections
     client_socket.close()
     server_socket.close()
     print(f"\n[CLOSED] Server shutdown or offline.")
-
-    pass
-
-
 
 def main():
     print("=" * 60)
