@@ -59,8 +59,30 @@ def receive_encrypted(sock):
 # ============================================================================
 
 def start_encrypted_client():
-    pass
+    # Create socket
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+    # Connect to server
+    host = '127.0.0.1'
+    port = 5555
+
+    print(f"[CONNECTING] Attempting to connect to {host}:{port}")
+    client_socket.connect((host, port))
+    print(f"[CONNECTED] Successfully connected to server!")
+
+    # Send encrypted message
+    message = "Hello from encrypted client!"
+    print(f"\n[SENDING] Original message: {message}")
+    send_encrypted(client_socket, message)
+
+    # Receive encrypted response
+    print(f"\n[RECEIVING] Waiting for server response")
+    response = receive_encrypted(client_socket)
+    print(f"[FINAL] Server's decrypted message: {response}")
+
+    # Close connection
+    client_socket.close()
+    print(f"\n[CLOSED] Connection closed")
 
 
 def main():
@@ -68,7 +90,6 @@ def main():
     print("ENCRYPTED SOCKET CLIENT")
     print("="*60)
     start_encrypted_client()
-    pass
 
 
 if __name__ == "__main__":
