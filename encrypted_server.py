@@ -4,6 +4,7 @@
 # Receives encrypted messages and sends encrypted responses
 
 import socket
+import time
 
 # ============================================================================
 # ENCRYPTION FUNCTIONS
@@ -11,6 +12,7 @@ import socket
 
 def caesar_encrypt(text, shift=3):
     # Encrypts text using Ceasar cipher.
+    result = ""
     for char in text:
         if char.isalpha():
             shift_base = ord('A') if char.isupper() else ord('a')
@@ -36,7 +38,7 @@ def send_encrypted(sock, message):
 def receive_encrypted(sock):
     # Receives and decrypts a message.
     encrypted_bytes = sock.recv(1024)
-    encrypted = encrypted_bytes.decde('utf-8')
+    encrypted = encrypted_bytes.decode('utf-8')
     decrypted = caesar_decrypt(encrypted)
     print(f"[DECRYPTED] '{encrypted}'  → '{decrypted}'")
     return decrypted
@@ -73,6 +75,9 @@ def start_encrypted_server():
     response = "Hello, from encrypted server! Your message was received securely."
     print(f"\n[SENDING] Original response: {response}")
     send_encrypted(client_socket, response)
+
+    # Give time for data to be sent
+    time.sleep(0.5) # Wait half a second before closing
 
     # Close connections
     client_socket.close()
