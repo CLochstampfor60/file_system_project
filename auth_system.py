@@ -193,15 +193,22 @@ def interactive_menu():
                 print(f"[FAILED] Login failed! Please try again.")
 
         elif choice == '3':
-            # View Users
-            print("\n --- USERS ---")
+            # View users (Only show usernames - SECURE)
+            # For production, Developer recommends to REMOVE this ENTIRELY from the option menu.
+            # Why keep Option 3? For displaying purposes when presenting Milestone Project.
+            print("\n --- ALL USERS ---")
             users = load_users()
-
             if users:
-                for username, password in users.items():
-                    print(f"Username: {username}, Password: {password}")
+                print(f"Total registered users: {len(users)}")
+                for username in users.keys():
+                    print(f"  -{username}")
             else:
                 print("No users registered yet in the database.")
+
+            #     for username, password in users.items():
+            #         print(f"Username: {username}, Password: {password}")
+            # else:
+            #     print("No users registered yet in the database.")
 
         elif choice == '4':     
             # Exit
