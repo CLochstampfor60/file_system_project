@@ -1,10 +1,8 @@
 ## CYSE 250 Milestone Project
 
----
+# Secure File Sharing System - Project Design 
 
-# Secure File Sharing System - Project Design
-
-## Project Overview
+## Project Overview (Under Development)
 A client-server application that allows users to securely upload, download, and manage files with encryption and authentication.
 
 ## System Architecture
@@ -25,3 +23,7 @@ A client-server application that allows users to securely upload, download, and 
 - File upload/download operations
 
 ---
+
+## *** NOT FINISHED -- Project Still Under Construction ***
+
+<!-- --- -->
