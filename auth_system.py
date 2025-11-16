@@ -19,17 +19,17 @@ def load_users():
     
     # Returns: {'alice': 'password123', 'bob': 'secret456'}
 
-    users = {}
+    users = {} # Start with empty dictionary
 
     # Check if file exists
-    if os.path.exists('users.txt'):
-        with open('users.txt', 'r') as f:
-            for line in f:
+    if os.path.exists('users.txt'): # Check if file exists
+        with open('users.txt', 'r') as f: # Open for reading
+            for line in f: # Read line by line
                 line = line.strip() # Remove the whitespace/new lines
                 if line and '|' in line: # Make sure line has data and separator
                     # Split on '|' to get username and password
                     username, password = line.split('|', 1)
-                    users[username] = password
+                    users[username] = password # Add to dictionary
     return users
 
 def save_user(username, password):
@@ -40,7 +40,7 @@ def save_user(username, password):
 
     with open('users.txt', 'a') as f: # 'a' = append mode
         f.write(f"{username}|{password}")
-    print(f"[SAVED] User '{username} saved to file.'")
+    print(f"[SAVED] User '{username}' saved to file.")
 
 
 # ============================================================================
@@ -54,16 +54,16 @@ def register_user(username, password):
     #     True if registration successful
     #     False if username already exists
 
-    users = load_users()
+    users = load_users() # Get existing users
 
     # Check if username already taken
     if username in users:
-        print(f"[ERROR] Username '{username} already exists! Please chooose a different one.'")
-        return False
+        print(f"[ERROR] Username '{username}' already exists! Please chooose a different one.")
+        return False # Username taken!
     
     # Save new user
-    save_user(username, password)
-    print(f"[SUCCESS] User '{username} registered successfully!'")
+    save_user(username, password) # Save new user
+    print(f"[SUCCESS] User '{username}' registered successfully!")
     return True
 
 def authenticate_user(username, password):
@@ -76,7 +76,7 @@ def authenticate_user(username, password):
     users = load_users()
 
     if username in users and users[username] == password:
-        print(f"[SUCCESS] User '{username} authenticated!'")
+        print(f"[SUCCESS] User '{username}' authenticated!")
         return True
     else:
         print(f"[ERROR] Invalid username and/or password! Please try again.")
@@ -174,7 +174,7 @@ def interactive_menu():
             # View Users
             print("\n --- USERS ---")
             users = load_users()
-            
+
             if users:
                 for username, password in users.items():
                     print(f"Username: {username}, Password: {password}")
@@ -183,7 +183,7 @@ def interactive_menu():
 
         elif choice == '4':     
             # Exit
-            print("\n [GOODBYE] Exiting...")
+            print("\n [GOODBYE] Exiting program...")
             break
 
         else:
