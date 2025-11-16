@@ -151,13 +151,24 @@ def interactive_menu():
         if choice == '1':
             # Register
             print("\n--- REGISTER ---")
-            username = input("Enter username: ").strip()
-            password = input ("Enter password: ").strip()
+            username = input("Enter username (or press 'Enter' to cancel): ").strip()
 
-            if not username or not password:
-                print("[ERROR] Username and password cannot be empty!")
-            else:
-                register_user(username, password)
+            if not username:
+                print("[CANCELLED] Registration cancelled.")
+                continue
+
+            password = input ("Enter password (or press 'Enter' to cancel): ").strip()
+
+            if not password:
+                print("[CANCELLED] Registration cancelled.")
+                continue
+
+            # register_user(username, password)
+
+            # if not username or not password:
+            #     print("[ERROR] Username and password cannot be empty!")
+            # else:
+            #     register_user(username, password)
         
         elif choice == '2':
             #Login
