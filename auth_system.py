@@ -94,27 +94,35 @@ def test_authentication():
     print("=" * 60)
 
     # Test 1: Register new user
-    print(f"\n-- Test ")
+    print(f"\n--- Test 1: Register New User ---")
+    register_user("alice", "pasword123")
 
     # Test 2: Try to register same user again (should fail)
-    print(f"\n-- Test ")
+    print(f"\n--- Test 2: Register Duplicate User ---")
+    register_user("alice", "different_password")
 
     # Test 3: Register another user
-    print(f"\n-- Test ")
+    print(f"\n--- Test 3: Register Another User ---")
+    register_user("bob", "secret456")
 
     # Test 4: Login with correct credentials
-    print(f"\n-- Test ")
+    print(f"\n--- Test 4: Login with Correct Credentials ---")
+    register_user("alice", "pasword123")
 
     # Test 5: Login with wrong password
-    print(f"\n-- Test ")
+    print(f"\n--- Test 5: Login with Wrong Password ---")
+    register_user("alice", "wrong_password")
 
     # Test 6: Login with non-existent user
-    print(f"\n-- Test ")
+    print(f"\n--- Test 6: Login with Non-existent User ---")
+    authenticate_user("charlie", "wrong_password")
 
     # Test 7: Show all users
-    print(f"\n-- Test ")
-
-    pass
+    print(f"\n--- Test 7: Display All Users---")
+    users = load_users()
+    print(f"Total users: {len(users)}")
+    for username in users:
+        print(f"  - {username}")
 
 
 # ============================================================================
