@@ -130,8 +130,72 @@ def test_authentication():
 # ============================================================================
 
 def interactive_menu():
-    pass
+    # Interactive menu for testing authentication
 
+    print("=" * 60)
+    print("USER AUTHENTICATION SYSTEM")
+    print("=" * 60)
+
+    while True:
+        print("\n" + "=" * 60)
+        print("MENU")
+        print("=" * 60)
+        print("1. Register new user")
+        print("2. Login")
+        print("3. View all users")
+        print("4. Exit")
+        print("=" * 60)       
+
+        choice = input("Enter choice: ").strip()
+
+        if choice == '1':
+            # Register
+            print("\n--- REGISTER ---")
+            username = input("Enter username: ").strip()
+            password = input ("Enter password: ").strip()
+
+            if not username or not password:
+                print("[ERROR] Username and password cannot be empty!")
+            else:
+                register(username, password)
+        
+        elif choice == '2':
+            #Login
+            print("\n--- LOGIN ---")
+            username = input("Enter username: ").strip()
+            password = input("Enter password: ").strip()
+
+            if authenticate_user(username, password):
+                print(f"[WELCOME] Welcome back, '{username}!'")
+            else:
+                print(f"[FAILED] Login failed! Try again.")
+
+
+        elif choice == '3':
+            # View Users
+            print("\n --- USERS ---")
+
+            users = load_users()
+
+            if users:
+                for username, password in users.items():
+                    print(f"Username: {username}, Password: {password}")
+            else:
+                print("No users registered yet in the database.")
+
+        elif choice == '4':     
+            # Exit
+            print("\n [GOODBYE] Exiting...")
+            break
+
+        else:
+            print("[ERROR] Invalid choice! Please try again using the options provided in the Menu.")
+
+
+
+# ============================================================================
+# MAIN
+# ============================================================================
 
 def main():
     # Choose which to run:
