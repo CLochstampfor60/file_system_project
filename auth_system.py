@@ -157,7 +157,7 @@ def interactive_menu():
             if not username or not password:
                 print("[ERROR] Username and password cannot be empty!")
             else:
-                register(username, password)
+                register_user(username, password)
         
         elif choice == '2':
             #Login
@@ -166,17 +166,15 @@ def interactive_menu():
             password = input("Enter password: ").strip()
 
             if authenticate_user(username, password):
-                print(f"[WELCOME] Welcome back, '{username}!'")
+                print(f"[SUCCESS] Welcome back, '{username}!'")
             else:
                 print(f"[FAILED] Login failed! Try again.")
-
 
         elif choice == '3':
             # View Users
             print("\n --- USERS ---")
-
             users = load_users()
-
+            
             if users:
                 for username, password in users.items():
                     print(f"Username: {username}, Password: {password}")
