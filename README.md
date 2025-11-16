@@ -1,12 +1,7 @@
-# file_system_project
-
-# Secure File Sharing System
-
 ## CYSE 250 Milestone Project
 
-A secure client-server file sharing application with encryption and user authentication.
-
 ---
+
 # Secure File Sharing System - Project Design
 
 ## Project Overview
