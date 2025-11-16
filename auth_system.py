@@ -10,26 +10,110 @@ import os
 # ============================================================================
 
 def load_users():
-    pass
+    # Loads users from users.txt file.
+    # Returns a dictionary: {username: password}
+    
+    # Example file content:
+    # alice|password123
+    # bob|secret456
+    
+    # Returns: {'alice': 'password123', 'bob': 'secret456'}
+
+    users = {}
+
+    # Check if file exists
+    if os.path.exists('users.txt'):
+        with open('users.txt', 'r') as f:
+            for line in f:
+                line = line.strip() # Remove the whitespace/new lines
+                if line and '|' in line: # Make sure line has data and separator
+                    # Split on '|' to get username and password
+                    username, password = line.split('|', 1)
+                    users[username] = password
+    return users
 
 def save_user(username, password):
-    pass
+    # Saves a new user to users.txt file.
+    # Appends to existing file (doesn't overwrite).
+    
+    # Format: username|password
+
+    with open('users.txt', 'a') as f: # 'a' = append mode
+        f.write(f"{username}|{password}")
+    print(f"[SAVED] User '{username} saved to file.'")
+
 
 # ============================================================================
 # AUTHENTICATION FUNCTIONS
 # ============================================================================
 
 def register_user(username, password):
-    pass
+    # Registers a new user if username doesn't exist.
+    
+    # Returns:
+    #     True if registration successful
+    #     False if username already exists
+
+    users = load_users()
+
+    # Check if username already taken
+    if username in users:
+        print(f"[ERROR] Username '{username} already exists! Please chooose a different one.'")
+        return False
+    
+    # Save new user
+    save_user(username, password)
+    print(f"[SUCCESS] User '{username} registered successfully!'")
+    return True
 
 def authenticate_user(username, password):
-    pass
+    # Verifies if username and password match stored credentials.
+    
+    # Returns:
+    #     True if credentials are valid
+    #     False if invalid
+
+    users = load_users()
+
+    if username in users and users[username] == password:
+        print(f"[SUCCESS] User '{username} authenticated!'")
+        return True
+    else:
+        print(f"[ERROR] Invalid username and/or password! Please try again.")
+        return False
 
 # ============================================================================
 # TESTING FUNCTIONS
 # ============================================================================
 
 def test_authentication():
+    # Test the authentication system
+
+    print("=" * 60)
+    print("TESTING AUTHENTICATION SYSTEM")
+    print("=" * 60)
+
+    # Test 1: Register new user
+    print(f"\n-- Test ")
+
+    # Test 2: Try to register same user again (should fail)
+    print(f"\n-- Test ")
+
+    # Test 3: Register another user
+    print(f"\n-- Test ")
+
+    # Test 4: Login with correct credentials
+    print(f"\n-- Test ")
+
+    # Test 5: Login with wrong password
+    print(f"\n-- Test ")
+
+    # Test 6: Login with non-existent user
+    print(f"\n-- Test ")
+
+    # Test 7: Show all users
+    print(f"\n-- Test ")
+
     pass
 
 
