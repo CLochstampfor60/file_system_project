@@ -26,4 +26,4 @@ A client-server application that allows users to securely upload, download, and 
 
 ## *** NOT FINISHED -- Project Still Under Construction ***
 
-<!-- --- -->
+---
