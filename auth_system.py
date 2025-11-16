@@ -162,13 +162,24 @@ def interactive_menu():
         elif choice == '2':
             #Login
             print("\n--- LOGIN ---")
-            username = input("Enter username: ").strip()
-            password = input("Enter password: ").strip()
+            username = input("Enter username (or press 'Enter' to cancel): ").strip()
+
+            # Check if user wants to cancel
+            if not username:
+                print("[CANCELED] Login cancelled.")
+                continue
+
+            password = input("Enter password (or press 'Enter' to cancel): ").strip()
+
+            # Check if user wants to cancel
+            if not password:
+                print("[CANCELED] Login cancelled.")
+                continue
 
             if authenticate_user(username, password):
                 print(f"[SUCCESS] Welcome back, '{username}!'")
             else:
-                print(f"[FAILED] Login failed! Try again.")
+                print(f"[FAILED] Login failed! Please try again.")
 
         elif choice == '3':
             # View Users
@@ -184,6 +195,7 @@ def interactive_menu():
         elif choice == '4':     
             # Exit
             print("\n [GOODBYE] Exiting program...")
+            print("=" * 60)  
             break
 
         else:
