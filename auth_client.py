@@ -86,10 +86,25 @@ def login(client_socket):
         print("[CANCELLED] Login cancelled.")
         return None
     
-    # Continue from this line...
+    password = input("Enter password (or press Enter to cancel): ").strip()
+    if not password:
+        print("[CANCELLED] Login cancelled.")
+        return None
+    
+    # Send login request to server
+    message = f"LOGIN|{username}|{password}"
+    send_encrypted(client_socket, message)
 
+    # Receive response
+    response = receive_encrypted(client_socket)
+    parts = response.split('|', 1)
 
-    pass
+    if parts[0] == "SUCCESS":
+        print(f"[SUCCESS] {parts[1]}")
+        return username
+    else:
+        print(f"[ERROR] {parts[1]}")
+        return None
 
 # ============================================================================
 # MENU FUNCTIONS
