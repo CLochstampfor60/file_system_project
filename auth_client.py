@@ -111,14 +111,50 @@ def login(client_socket):
 # ============================================================================
 
 def main_menu(client_socket):
-    
-    
-    pass
+    # Main menu for login/register.
+    while True:
+        print("\n" + "=" * 60)
+        print("MAIN MENU")
+        print("=" * 60)
+        print("1. Login")
+        print("2. Register")
+        print("3. Exit")
+        print("=" * 60)
+
+        choice = input("Enter choice: ").strip()
+
+        if choice == "1":
+            username = login(client_socket)
+            if username:
+                return username # Successfully logged in
+
+        elif choice == "2":
+            register(client_socket)
+        
+        elif choice == "3":
+            print("\n[GOODBYE] Exiting...")
+            send_encrypted(client_socket, "EXIT")
+            return None
+        
+        else:
+            print("[ERROR] Invalid choice")
 
 def user_menu(client_socket, username):
-    
-    
-    pass
+    # Menu after successful login.
+    print("\n" + "=" * 60)
+    print(f"WELCOME, {username}")
+    print("=" * 60)
+    print("You are not logged in.")
+    print("[FINISH THIS IN STEP 4] Add file operations here.")
+    print("=" * 60)
+
+    input("\nPress Enter to logout...")
+
+    # Send logout request
+    send_encrypted(client_socket, "LOGOUT")
+    response = receive_encrypted(client_socket)
+    print(f"[INFO] {response.split('|')[1] if '|' in response else response}")
+
 
 # ============================================================================
 # MAIN CLIENT
