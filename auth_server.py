@@ -85,7 +85,84 @@ def authenticate_user(username, password):
 # ============================================================================
 
 def handle_client(client_socket, client_address):
-    pass
+    # Handles the authentication requests from a connnected client.
+
+    # Protocol:
+    # - Client sends: REGISTER|username|password
+    # - Server responds: SUCCESS or ERROR|message
+
+    # - Client sends: LOGIN|username|password 
+    # - Server responds: SUCCESS or ERROR|message
+
+    print(f"[NEW CONNECTION] {client_address} connected.")
+
+    authenticated = False
+    current_user = None
+
+    try:
+        while True:
+            # Receive encrypted command from client
+            message = receive_encrypted(client_socket)
+            if not message:
+                break
+            
+            # Parse command (format: COMMAND|username|password)
+            parts = message.split('|')
+            command = parts[0]
+
+            if command == "REGISTER":
+                # Handle registration
+                username = parts[1]
+                password = parts[2]
+
+                print(f"[REGISTER] Attempting to register user: {username}")
+
+                if register_user(username, password):
+                    send_encrypted(client_socket, "SUCCESS|Registration successful.")
+                    print(f"[SUCCESS] User '{username}' registered.")
+                else:
+                    send_encrypted(client_socket, "ERROR|Username already exists.")
+                    print(f"[ERROR] Username '{username}' already taken.")
+
+            elif command == "LOGIN":
+                # Handle login
+
+                username = parts[1]
+                password = parts[2]
+
+                print(f"[LOGIN] Attempting to login for user: {username}")
+
+                if authenticate_user(username, password):
+                    authenticated = True
+                    current_user = username
+                    send_encrypted(client_socket, "SUCCESS|Login successful.")
+                    print(f"[SUCCESS] User '{username}' logged in.")
+                else:
+                    send_encrypted(client_socket, "ERROR|Invalid username or password.")
+                    print(f"[ERROR] Invalid credentials for '{username}'.")
+            
+            elif command == "LOGOUT":
+                # Handle logout
+                if authenticated:
+                    print(f"[LOGOUT] User '{current_user} logged out.'")
+                    authenticated = False
+                    current_user = None
+                    send_encrypted(client_socket, "SUCCESS|Logged out")
+                else:
+                    send_encrypted(client_socket, "ERROR|Not logged in")
+            
+            elif command == "EXIT":
+                # Client wants to disconnect
+                send_encrypted(client_socket, "ERROR|Unknown command")
+    
+    except Exception as e:
+        print(f"[ERROR] Exception with {client_address}: {e}")
+    finally:
+        client_socket.close()
+        print(f"[DISCONNECTED] {client_address} disconnected.")
+
+ 
+        
 
 # ============================================================================
 # MAIN SERVER
