@@ -9,7 +9,7 @@ import socket
 # ENCRYPTION FUNCTIONS
 # ============================================================================
 
-def caesar_encypt(text, shift=3):
+def caesar_encrypt(text, shift=3):
     # Encrypts text using Caesar cipher.
     result = ""
     for char in text:
@@ -21,8 +21,8 @@ def caesar_encypt(text, shift=3):
     return result
 
 def caesar_decrypt(text, shift=3):
-    # Decypts Ceasar cipher text.
-    return caesar_encypt(text, -shift)
+    # Decrypts Caesar cipher text.
+    return caesar_encrypt(text, -shift)
 
 # ============================================================================
 # NETWORK FUNCTIONS
@@ -30,7 +30,7 @@ def caesar_decrypt(text, shift=3):
 
 def send_encrypted(sock, message):
     # Encrypts and sends a message over socket.
-    encrypted = caesar_encypt(message)
+    encrypted = caesar_encrypt(message)
     sock.send(encrypted.encode('utf-8'))
 
 def receive_encrypted(sock):
@@ -83,8 +83,12 @@ def login(client_socket):
 
     username = input("Enter username (or press Enter to cancel): ").strip()
     if not username:
-        print("[CANCELLED]")
+        print("[CANCELLED] Login cancelled.")
+        return None
     
+    # Continue from this line...
+
+
     pass
 
 # ============================================================================
