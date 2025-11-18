@@ -10,7 +10,15 @@ import socket
 # ============================================================================
 
 def caesar_encypt(text, shift=3):
-    pass
+    # Encrypts text using Caesar cipher.
+    result = ""
+    for char in text:
+        if char.isalpha():
+            shift_base = ord('A') if char.isupper() else ord('a')
+            result += chr((ord(char) - shift_base + shift) % 26 + shift_base)
+        else:
+            result += char
+    return result
 
 def caesar_decrypt(text, shift=3):
     # Decypts Ceasar cipher text.
@@ -21,21 +29,29 @@ def caesar_decrypt(text, shift=3):
 # ============================================================================
 
 def send_encrypted(sock, message):
-    pass
-
+    # Encrypts and sends a message over socket.
+    encrypted = caesar_encypt(message)
+    sock.send(encrypted.encode('utf-8'))
 
 def receive_encrypted(sock):
-    pass
-
+    # Receives and decrypts a message from socket.
+    encrypted_bytes = sock.recv(2048)
+    encrypted = encrypted_bytes.decode('utf-8')
+    decrypted = caesar_decrypt(encrypted)
+    return decrypted
 
 # ============================================================================
 # AUTHENTICATION FUNCTIONS
 # ============================================================================
 
 def register(client_socket):
+
+
     pass
 
 def login(client_socket):
+    
+    
     pass
 
 # ============================================================================
@@ -43,9 +59,13 @@ def login(client_socket):
 # ============================================================================
 
 def main_menu(client_socket):
+    
+    
     pass
 
 def user_menu(client_socket, username):
+    
+    
     pass
 
 # ============================================================================
@@ -55,6 +75,8 @@ def user_menu(client_socket, username):
 def main():
     
     def start_auth_client(host='127.0.0.1', port=5555):
+        
+        
         pass
 
     start_auth_client()
