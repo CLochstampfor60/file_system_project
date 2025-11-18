@@ -39,7 +39,7 @@ def save_user(username, password):
     # Format: username|password
 
     with open('users.txt', 'a') as f: # 'a' = append mode
-        f.write(f"{username}|{password}")
+        f.write(f"{username}|{password}\n")
     print(f"[SAVED] User '{username}' saved to file.")
 
 
@@ -79,7 +79,7 @@ def authenticate_user(username, password):
         print(f"[SUCCESS] User '{username}' authenticated!")
         return True
     else:
-        print(f"[ERROR] Invalid username and/or password! Please try again.")
+        print(f"[ERROR] Invalid username and/or password!")
         return False
 
 # ============================================================================
@@ -163,7 +163,7 @@ def interactive_menu():
                 print("[CANCELLED] Registration cancelled.")
                 continue
 
-            # register_user(username, password)
+            register_user(username, password)
 
             # if not username or not password:
             #     print("[ERROR] Username and password cannot be empty!")
