@@ -45,12 +45,45 @@ def receive_encrypted(sock):
 # ============================================================================
 
 def register(client_socket):
+    # Handles user registration with server.
+    print("\n" + "=" * 60)
+    print("USER REGISTRATION")
+    print("=" * 60)
 
+    username = input("Enter username (or press Enter to cancel): ").strip()
+    if not username:
+        print("[CANCELLED] Registration cancelled")
+        return False
+    
+    password = input("Enter password (or press Enter to cancel): ").strip()
+    if not password:
+        print("[CANCELLED] Registration cancelled")
+        return False
+    
+    # Send registration request to server
+    message = f"REGISTER|{username}|{password}"
+    send_encrypted(client_socket, message)
 
-    pass
+    # Receive response
+    response = receive_encrypted(client_socket)
+    parts = response.split('|', 1)
+
+    if parts[0] == "SUCCESS":
+        print(f"[SUCCESS] {parts[1]}")
+        return True
+    else:
+        print(f"[ERROR] {parts[1]}")
+        return False
 
 def login(client_socket):
-    
+    # Handles user login with server.
+    print("\n" + "=" * 60)
+    print("LOGIN")
+    print("=" * 60)
+
+    username = input("Enter username (or press Enter to cancel): ").strip()
+    if not username:
+        print("[CANCELLED]")
     
     pass
 
