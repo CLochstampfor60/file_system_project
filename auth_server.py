@@ -11,7 +11,7 @@ import os
 # ============================================================================
 
 def caesar_encrypt(text, shift=3):
-    # Encrypts text using Ceasar cipher
+    # Encrypts text using Caesar cipher
     result = ""
     for char in text:
         if char.isalpha():
@@ -71,7 +71,7 @@ def register_user(username, password):
     users = load_users()
 
     if username in users:
-        return False # Username takne
+        return False # Username taken
     save_user(username, password)
     return True
 
@@ -85,7 +85,7 @@ def authenticate_user(username, password):
 # ============================================================================
 
 def handle_client(client_socket, client_address):
-    # Handles the authentication requests from a connnected client.
+    # Handles the authentication requests from a connected client.
 
     # Protocol:
     # - Client sends: REGISTER|username|password

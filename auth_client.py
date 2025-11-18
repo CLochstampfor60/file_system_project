@@ -163,12 +163,36 @@ def user_menu(client_socket, username):
 def main():
     
     def start_auth_client(host='127.0.0.1', port=5555):
-        
-        
-        pass
+        # Starts in authentication client.
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+        try:
+            # Connect to server
+            print("=" * 60)
+            print("AUTHENTICATION CLIENT")
+            print("=" * 60)
+            print(f"[CONNECTING] Connecting to {host}:{port}...")
+            client_socket.connect((host, port))
+            print(f"[CONNECTED] Connected to server!")
+            
+            # Show main menu (login/register)
+            username = main_menu(client_socket)
+
+            # If logged in, show user menu
+            if username:
+                user_menu(client_socket, username)
+
+        except ConnectionRefusedError:
+            print("[ERROR] Could not connect to server. Is it running?")
+
+        except Exception as e:
+            print(f"[ERROR] {e}")
+
+        finally:
+            client_socket.close()
+            print("[DISCONNECTED] Connection closed")
+    
     start_auth_client()
-    pass
 
 if __name__ == "__main__":
     main()
