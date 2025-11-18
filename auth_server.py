@@ -161,9 +161,6 @@ def handle_client(client_socket, client_address):
         client_socket.close()
         print(f"[DISCONNECTED] {client_address} disconnected.")
 
- 
-        
-
 # ============================================================================
 # MAIN SERVER
 # ============================================================================
@@ -172,9 +169,36 @@ def handle_client(client_socket, client_address):
 def main():
     
     def start_auth_server(host='127.0.0.1', port=5555):
-        pass
+        # Starts the authentication server.
+        # Create socket
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
+        # Bind and listen
+        server_socket.bind((host, port))
+        server_socket.listen(5)
 
+        print("=" * 60)
+        print("AUTHENTICATION SERVER")
+        print("=" * 60)
+        print(f"[STARTING] Server starting {host}:{port}")
+        print(f"[LISTENING] Waiting for connections...")
+        print("=" * 60)
+
+        try:
+            while True:
+                # Accept connection
+                client_socket, client_address = server_socket.accept()
+                handle_client(client_socket, client_address)
+        
+        except KeyboardInterrupt:
+            print("\n[SHUTDOWN] Server shutting down...")
+        
+        finally:
+            server_socket.close()
+            print(f"[CLOSED] Server closed and offline.")
+    
+    start_auth_server()
 
 if __name__ == "__main__":
     main()
