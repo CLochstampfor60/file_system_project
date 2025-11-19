@@ -251,8 +251,41 @@ def handle_client(client_socket, client_address):
             elif command == "DOWNLOAD":
                 # Handle file download
                 # Format: DOWNLOAD|filename
+                if not authenticated:
+                    send_encrypted(client_socket, "ERROR|Please login first.")
+                    continue
 
-                
+                filename = parts[1]
+                print(f"[DOWNLOAD] {current_user} downloading {filename}.")
+
+                # Get file content
+                file_content = get_file_content(current_user, filename)
+
+                if file_content is None:
+                    print(f"[ERROR] File {filename} not found for {current_user}.")
+                    send_encrypted(client_socket, "ERROR|File not found")
+                else:
+                    # Encrypt file content
+                    encrypted_content = caesar_encrypt(file_content)
+                    filesize = len(encrypted_content)
+
+                    # Send file content
+                    send_encrypted(client_socket, f"[FILESIZE] {filesize}")
+
+                    # Wait for ready signal
+                    ready = receive_encrypted(client_socket)
+
+                    if ready == "READY":
+                        # Send encrypted file content
+                        print(f"[SUCCESS] {filename} sent to {current_user}")
+                        client_socket.send(encrypted_content.encode('utf-8'))
+
+                        # Wait for confirmation
+                        confirmation = receive_encrypted(client_socket)
+                        send_encrypted(client_socket, "SUCCESS|File downloaded successfully!")
+
+            elif command == "LIST":
+                # Handle list files
 
                 pass
 
