@@ -84,7 +84,7 @@ def authenticate_user(username, password):
 # FILE MANAGEMENT FUNCTIONS
 # ============================================================================
 
-def get_user_dictionary(username):
+def get_user_directory(username):
     # Returns the directory path for a specific user.
     # Creates directory if it doesn't exist.
     user_dir = os.path.join('server_files', username)
@@ -94,7 +94,7 @@ def get_user_dictionary(username):
 
 def list_user_files(username):
     # Returns a list of files in users' directory
-    user_dir = get_user_dictionary(username)
+    user_dir = get_user_directory(username)
     files = []
     if os.path.exists(user_dir):
         files = [f for f in os.listdir(user_dir)
@@ -102,9 +102,9 @@ def list_user_files(username):
                  ]
     return files
 
-def save_uploaded_files(username, filename, file_content):
+def save_uploaded_file(username, filename, file_content):
     # Saves uploaded file content to user's dictionary.
-    user_dir = get_user_dictionary(username)
+    user_dir = get_user_directory(username)
     filepath = os.path.join(user_dir, filename)
 
     with open(filepath, 'w') as f:
@@ -115,7 +115,7 @@ def save_uploaded_files(username, filename, file_content):
 def get_file_content(username, filename):
     # Reads and returns file content from user's dictionary.
     # Returns 'None' if file doesn't exist.
-    user_dir = get_user_dictionary(username)
+    user_dir = get_user_directory(username)
     filepath = os.path.join(user_dir, filename)
 
     if not os.path.exists(filepath):
@@ -130,7 +130,7 @@ def delete_user_file(username, filename):
     # Deletes a file from user's dictionary.
     # Returns True if successful, False if file doesn't exist.
 
-    user_dir = get_user_dictionary(username)
+    user_dir = get_user_directory(username)
     filepath = os.path.join(user_dir, filename)
 
     if os.path.exists(filepath):
@@ -238,11 +238,11 @@ def handle_client(client_socket, client_address):
                         break
                     # Decrypt the chunk
                     decrypted_chunk = caesar_decrypt(chunk.decode('utf-8'))
-                    file_content = decrypted_chunk
+                    file_content += decrypted_chunk
                     remaining -= len(chunk)
 
                 # Save file
-                if save_uploaded_files(current_user, filename, file_content):
+                if save_uploaded_file(current_user, filename, file_content):
                     print(f"[SUCCESS] {filename} uploaded by {current_user}.")
                     send_encrypted(client_socket, "SUCCESS|File uploaded successfully!")
                 else:
@@ -270,7 +270,7 @@ def handle_client(client_socket, client_address):
                     filesize = len(encrypted_content)
 
                     # Send file content
-                    send_encrypted(client_socket, f"[FILESIZE] {filesize}")
+                    send_encrypted(client_socket, f"FILESIZE|{filesize}")
 
                     # Wait for ready signal
                     ready = receive_encrypted(client_socket)
