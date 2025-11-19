@@ -139,14 +139,6 @@ def delete_user_file(username, filename):
     
     return False
 
-
-
-
-
-
-
-
-
 # ============================================================================
 # CLIENT HANDLER
 # ============================================================================
@@ -219,6 +211,51 @@ def handle_client(client_socket, client_address):
                 else:
                     send_encrypted(client_socket, "ERROR|Not logged in")
             
+            elif command == "UPLOAD":
+                # Handle file upload
+                #  Format: UPLOAD|filename|filesize
+
+                if not authenticated:
+                    send_encrypted(client_socket, "ERROR|Please login first.")
+                    continue
+
+                filename = parts[1]
+                filesize = int(parts[2])
+
+                print(f"[UPLOAD] {current_user} uploading {filename} ({filesize} bytes.)")
+
+                # Send ready signal
+                send_encrypted(client_socket, "READY")
+
+                # Receive file content
+                file_content = ""
+                remaining = filesize
+
+                while remaining > 0:
+                    chunk_size = min(4096, remaining)
+                    chunk = client_socket.recv(chunk_size)
+                    if not chunk:
+                        break
+                    # Decrypt the chunk
+                    decrypted_chunk = caesar_decrypt(chunk.decode('utf-8'))
+                    file_content = decrypted_chunk
+                    remaining -= len(chunk)
+
+                # Save file
+                if save_uploaded_files(current_user, filename, file_content):
+                    print(f"[SUCCESS] {filename} uploaded by {current_user}.")
+                    send_encrypted(client_socket, "SUCCESS|File uploaded successfully!")
+                else:
+                    send_encrypted(client_socket, "ERROR|Failed to save file.")
+
+            elif command == "DOWNLOAD":
+                # Handle file download
+                # Format: DOWNLOAD|filename
+
+                
+
+                pass
+
             elif command == "EXIT":
                 # Client wants to disconnect
                 send_encrypted(client_socket, "GOODBYE")
