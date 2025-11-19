@@ -81,6 +81,73 @@ def authenticate_user(username, password):
     return username in users and users[username] == password
 
 # ============================================================================
+# FILE MANAGEMENT FUNCTIONS
+# ============================================================================
+
+def get_user_dictionary(username):
+    # Returns the directory path for a specific user.
+    # Creates directory if it doesn't exist.
+    user_dir = os.path.join('server_files', username)
+    if not os.path.exists(user_dir):
+        os.makedirs(user_dir)
+    return user_dir
+
+def list_user_files(username):
+    # Returns a list of files in users' directory
+    user_dir = get_user_dictionary(username)
+    files = []
+    if os.path.exists(user_dir):
+        files = [f for f in os.listdir(user_dir)
+                    if os.path.isfile(os.path.join(user_dir, f))
+                 ]
+    return files
+
+def save_uploaded_files(username, filename, file_content):
+    # Saves uploaded file content to user's dictionary.
+    user_dir = get_user_dictionary(username)
+    filepath = os.path.join(user_dir, filename)
+
+    with open(filepath, 'w') as f:
+        f.write(file_content)
+    
+    return True
+
+def get_file_content(username, filename):
+    # Reads and returns file content from user's dictionary.
+    # Returns 'None' if file doesn't exist.
+    user_dir = get_user_dictionary(username)
+    filepath = os.path.join(user_dir, filename)
+
+    if not os.path.exists(filepath):
+        return None
+    
+    with open(filepath, 'r') as f:
+        content = f.read()
+
+    return content
+
+def delete_user_file(username, filename):
+    # Deletes a file from user's dictionary.
+    # Returns True if successful, False if file doesn't exist.
+
+    user_dir = get_user_dictionary(username)
+    filepath = os.path.join(user_dir, filename)
+
+    if os.path.exists(filepath):
+        os.remove(filepath)
+        return True
+    
+    return False
+
+
+
+
+
+
+
+
+
+# ============================================================================
 # CLIENT HANDLER
 # ============================================================================
 
