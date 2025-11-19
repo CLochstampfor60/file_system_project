@@ -144,7 +144,7 @@ def user_menu(client_socket, username):
     print("\n" + "=" * 60)
     print(f"WELCOME, {username}")
     print("=" * 60)
-    print("You are not logged in.")
+    print("You are now logged in.")
     print("[FINISH THIS IN STEP 4] Add file operations here.")
     print("=" * 60)
 

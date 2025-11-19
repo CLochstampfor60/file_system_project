@@ -64,7 +64,7 @@ def load_users():
 def save_user(username, password):
     # Saves a new user to users.txt file.
     with open('users.txt', 'a') as f:
-        f.write(f"{username}:{password}\n")
+        f.write(f"{username}|{password}\n")
 
 def register_user(username, password):
     # Registers a new user if username doesn't exist.
@@ -118,11 +118,12 @@ def handle_client(client_socket, client_address):
                 print(f"[REGISTER] Attempting to register user: {username}")
 
                 if register_user(username, password):
+                    print(f"[SUCCESS] User '{username}' registered.")   
                     send_encrypted(client_socket, "SUCCESS|Registration successful.")
-                    print(f"[SUCCESS] User '{username}' registered.")
                 else:
-                    send_encrypted(client_socket, "ERROR|Username already exists.")
                     print(f"[ERROR] Username '{username}' already taken.")
+                    send_encrypted(client_socket, "ERROR|Username already exists.")
+
 
             elif command == "LOGIN":
                 # Handle login
@@ -135,16 +136,16 @@ def handle_client(client_socket, client_address):
                 if authenticate_user(username, password):
                     authenticated = True
                     current_user = username
-                    send_encrypted(client_socket, "SUCCESS|Login successful.")
                     print(f"[SUCCESS] User '{username}' logged in.")
+                    send_encrypted(client_socket, "SUCCESS|Login successful.")
                 else:
-                    send_encrypted(client_socket, "ERROR|Invalid username or password.")
                     print(f"[ERROR] Invalid credentials for '{username}'.")
+                    send_encrypted(client_socket, "ERROR|Invalid username or password.")
             
             elif command == "LOGOUT":
                 # Handle logout
                 if authenticated:
-                    print(f"[LOGOUT] User '{current_user} logged out.'")
+                    print(f"[LOGOUT] User '{current_user}' logged out.")
                     authenticated = False
                     current_user = None
                     send_encrypted(client_socket, "SUCCESS|Logged out")
@@ -153,7 +154,8 @@ def handle_client(client_socket, client_address):
             
             elif command == "EXIT":
                 # Client wants to disconnect
-                send_encrypted(client_socket, "ERROR|Unknown command")
+                send_encrypted(client_socket, "GOODBYE")
+                break
     
     except Exception as e:
         print(f"[ERROR] Exception with {client_address}: {e}")
