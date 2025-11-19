@@ -286,8 +286,38 @@ def handle_client(client_socket, client_address):
 
             elif command == "LIST":
                 # Handle list files
+                if not authenticated:
+                    send_encrypted(client_socket, "ERROR| Please login first.")    
+                    continue
 
-                pass
+                print(f"[LIST] {current_user} requesting file list.")
+
+                files = list_user_files(current_user)
+
+                if files:
+                    file_list = "|".join(files)
+                    send_encrypted(client_socket, f"LIST|{file_list}")
+                    print(f"[SUCCESS] Sent file list to {current_user}: {len(files)} files.")
+                else:
+                    print(f"[INFO] {current_user} has no files.")
+                    send_encrypted(client_socket, "LIST|No files available.")
+
+            elif command == "DELETE":
+                # Handle file Deletion
+                # Format: DELETE|filename
+
+                if not authenticated:
+                    send_encrypted(client_socket, "ERROR| Please login first.")    
+                    continue
+
+                filename = parts[1]
+
+                if delete_user_file(current_user, filename):
+                    send_encrypted(client_socket, "SUCCESS|File deleted successfully!")
+                    print(f"[SUCCESS] {filename} deleted by {current_user}.")
+                else:
+                    send_encrypted(client_socket, "ERROR|File not found")
+                    print(f"[ERROR] File {filename} not found for {current_user}.")
 
             elif command == "EXIT":
                 # Client wants to disconnect
