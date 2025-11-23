@@ -4,6 +4,7 @@
 # Connects to authentication server for registration and login
 
 import socket
+import os
 
 # ============================================================================
 # ENCRYPTION FUNCTIONS
@@ -105,6 +106,57 @@ def login(client_socket):
     else:
         print(f"[ERROR] {parts[1]}")
         return None
+
+# ============================================================================
+# FILE OPERATION FUNCTIONS (Add this entire section)
+# ============================================================================
+
+def upload_file(client_socket):
+    # Handles file upload to server.
+    # Flow:
+    # 1. User enters file path
+    # 2. Read file content
+    # 3. Encrypt content
+    # 4. Send UPLOAD command with filename and size
+    # 5. Wait for READY signal
+    # 6. Send encrypted file data
+    # 7. Receive confirmation
+    
+    print("\n" + "=" * 60)
+    print("UPLOAD FILE")
+    print("=" * 60)
+
+    filepath = input("Enter file path to upload (or press Enter to cancel): ").strip()
+
+    if not filepath:
+        print("[CANCELLED] Upload Cancelled")
+
+    # Check if file exists.
+    if not os.path.exists(filepath):
+        print(f"[ERROR] File not found {filepath}.")
+
+    # Get just the filename (not full path)
+    filename = os.path.basename(filepath)
+
+
+    pass
+
+
+
+def download_file(client_socket):
+    pass
+
+
+
+def list_files(client_socket):
+    pass
+
+
+
+def delete_files(client_socket):
+    pass
+
+
 
 # ============================================================================
 # MENU FUNCTIONS
