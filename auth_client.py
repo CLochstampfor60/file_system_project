@@ -130,10 +130,12 @@ def upload_file(client_socket):
 
     if not filepath:
         print("[CANCELLED] Upload Cancelled")
+        return
 
     # Check if file exists.
     if not os.path.exists(filepath):
         print(f"[ERROR] File not found {filepath}.")
+        return
 
     # Get just the filename (not full path)
     filename = os.path.basename(filepath)
@@ -151,7 +153,7 @@ def upload_file(client_socket):
     filesize = len(encrypted_content)
 
     # Send upload command: UPLOAD|filename|filesize
-    message = f"[UPLOAD]{filename}|{filesize}"
+    message = f"UPLOAD|{filename}|{filesize}"
     send_encrypted(client_socket, message)
 
     # Wait for READY signal from server
@@ -197,13 +199,13 @@ def download_file(client_socket):
         print("[CANCELLED] Download cancelled.")
         return
     
-    save_as = input(f"Save as (press Enter for '{filename}: ')").strip()
+    save_as = input(f"Save as (press Enter for '{filename}'): ").strip()
     if not save_as:
         save_as = filename
     
     # Send download command: DOWNLOAD|filename
     message = f"DOWNLOAD|{filename}"
-    send_encrypted(client_socket)
+    send_encrypted(client_socket, message)
 
     # Receive response (either FILESIZE or ERROR)
     response = receive_encrypted(client_socket)
@@ -276,8 +278,8 @@ def list_files(client_socket):
 
     if parts[0] == "LIST":
         if len(parts) > 1 and parts[1] != "No file available":
-            file = parts[1:] # Get all filenames after "LIST"
-            for i, filename in enumerate(file, 1):
+            files = parts[1:] # Get all filenames after "LIST"
+            for i, filename in enumerate(files, 1):
                 print(f"{i}. {filename}")
         else:
             print("No files available")
@@ -286,7 +288,7 @@ def list_files(client_socket):
 
     print("=" * 60)
 
-def delete_files(client_socket):
+def delete_file(client_socket):
     # Handles file deletion from server.
     
     # Flow:
@@ -317,13 +319,14 @@ def delete_files(client_socket):
     send_encrypted(client_socket, message)
 
     # Receive response
-    response = receive_encrypted.decode(client_socket)
+    response = receive_encrypted(client_socket)
     parts = response.split('|', 1)
 
     if parts[0] == "SUCCESS":
         print(f"[SUCCESS] {parts[1]}")
     else:
         print(f"[ERROR] {parts[1]}")
+
 
 # ============================================================================
 # MENU FUNCTIONS
