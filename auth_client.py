@@ -256,12 +256,54 @@ def download_file(client_socket):
             print(f"[ERROR] Could not save file: {e}")
 
 def list_files(client_socket):
-    pass
+    # Requests and displays list of files from server.
+    
+    # Flow:
+    # 1. Send LIST command
+    # 2. Receive list of files (separated by |)
+    # 3. Display files
 
+    print("\n" + "=" * 60)
+    print("YOUR FILES")
+    print("=" * 60)
+    
+    # Send list command
+    send_encrypted(client_socket, "LIST")
 
+    # Receive response: LIST|file1|file2|file3 or LIST|No files available 
+    response = receive_encrypted(client_socket)
+    parts = response.split('|')
+
+    if parts[0] == "LIST":
+        if len(parts) > 1 and parts[1] != "No file available":
+            file = parts[1:] # Get all filenames after "LIST"
+            for i, filename in enumerate(files, 1):
+                print(f"{i}. {filename}")
+        else:
+            print("No files available")
+    else:
+        print(f"[ERROR] Unexpected response from server")    
+
+    print("=" * 60)
 
 def delete_files(client_socket):
+    # Handles file deletion from server.
+    
+    # Flow:
+    # 1. User enters filename to delete
+    # 2. Confirm deletion
+    # 3. Send DELETE command
+    # 4. Receive confirmation
+
+    print("\n" + "=" * 60)
+    print("DELETE FILE")
+    print("=" * 60)
+
+
+
     pass
+
+
 
 
 
