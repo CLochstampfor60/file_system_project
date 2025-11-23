@@ -277,7 +277,7 @@ def list_files(client_socket):
     if parts[0] == "LIST":
         if len(parts) > 1 and parts[1] != "No file available":
             file = parts[1:] # Get all filenames after "LIST"
-            for i, filename in enumerate(files, 1):
+            for i, filename in enumerate(file, 1):
                 print(f"{i}. {filename}")
         else:
             print("No files available")
@@ -299,13 +299,31 @@ def delete_files(client_socket):
     print("DELETE FILE")
     print("=" * 60)
 
+    filename = input("Enter filename to delete (or press Enter to cancel)" ).strip()
 
+    if not filename:
+        print("[CANCELLED] Delete cancelled")
+        return
+    
+    # Confirm deletion
+    confirm = input(f"Are you sure you want to delete '{filename}'? (yes/no): ").strip()
 
-    pass
+    if confirm != 'yes':
+        print("[CANCELLED] File not deleted")
+        return
 
+    # Send delete command: DELETE|filename
+    message = f"DELETE|{filename}"
+    send_encrypted(client_socket, message)
 
+    # Receive response
+    response = receive_encrypted.decode(client_socket)
+    parts = response.split('|', 1)
 
-
+    if parts[0] == "SUCCESS":
+        print(f"[SUCCESS] {parts[1]}")
+    else:
+        print(f"[ERROR] {parts[1]}")
 
 # ============================================================================
 # MENU FUNCTIONS
