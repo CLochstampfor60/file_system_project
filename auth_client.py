@@ -187,11 +187,73 @@ def download_file(client_socket):
     # 6. Decrypt and save file
     # 7. Send confirmation
 
+    print("\n" + "=" * 60)
+    print("DOWNLOAD FILE")
+    print("=" * 60)
+
+    filename = input("Enter filename to download (or press Enter to cancel): ").strip()
+
+    if not filename:
+        print("[CANCELLED] Download cancelled.")
+        return
     
+    save_as = input(f"Save as (press Enter for '{filename}: ')").strip()
+    if not save_as:
+        save_as = filename
+    
+    # Send download command: DOWNLOAD|filename
+    message = f"DOWNLOAD|{filename}"
+    send_encrypted(client_socket)
 
-    pass
+    # Receive response (either FILESIZE or ERROR)
+    response = receive_encrypted(client_socket)
+    parts = response.split('|', 1)
 
+    if parts[0] == "ERROR":
+        print(f"[ERROR] {parts[1]}")
+        return
+    
+    if parts[0] == "FILESIZE":
+        filesize = int(parts[1])
+        print(f"[RECEIVING] Downloading {filename} ({filesize} bytes...)")
 
+        # Send READY signal to server
+        send_encrypted(client_socket, "READY")
+
+        # Receive encrypted file data in chunks
+        received_data = b""
+        remaining = filesize
+
+        while remaining > 0:
+            chunk_size = min(4096, remaining)
+            chunk = client_socket.recv(chunk_size)
+            if not chunk:
+                break
+            received_data += chunk
+            remaining -= len(chunk)
+        
+        # Decrypt file content
+        decrypted_content = caesar_decrypt(received_data.decode('utf-8'))
+
+        # Save to file
+        try:
+            with open(save_as, 'w') as f:
+                f.write(decrypted_content)
+
+            # Save confirmation to server
+            send_encrypted(client_socket, "RECEIVED")
+            
+            # Get final confirmation
+            response = receive_encrypted(client_socket)
+            parts = response.split('|', 1)
+
+            if parts[0] == "SUCCESS":
+                print(f"[SUCCESS] File saved as {save_as}")
+            else:
+                print(f"[ERROR] {parts[1]}")
+
+        except Exception as e:
+            print(f"[ERROR] Could not save file: {e}")
 
 def list_files(client_socket):
     pass
