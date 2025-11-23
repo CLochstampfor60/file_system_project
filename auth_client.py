@@ -138,12 +138,57 @@ def upload_file(client_socket):
     # Get just the filename (not full path)
     filename = os.path.basename(filepath)
 
+    # Read file content
+    try:
+        with open(filepath, 'r') as f:
+            file_content = f.read()
+    except Exception as e:
+        print(f"[ERROR] Could not read file: {e}")
+        return
+    
+    # Encrypt file content
+    encrypted_content = caesar_encrypt(file_content)
+    filesize = len(encrypted_content)
 
-    pass
+    # Send upload command: UPLOAD|filename|filesize
+    message = f"[UPLOAD]{filename}|{filesize}"
+    send_encrypted(client_socket, message)
 
+    # Wait for READY signal from server
+    response = receive_encrypted(client_socket)
+
+    if response == "READY":
+        # Server is ready, sen encrypted file content
+        client_socket.send(encrypted_content.encode('utf-8'))
+        print(f"[SENDING] Uploading {filename}...")
+
+        # Receive confirmation
+        response = receive_encrypted(client_socket)
+        parts = response.split('|', 1)
+
+        if parts[0] == "SUCCESS": 
+            print(f"[SUCCESS] {parts[1]}")
+        else:
+            print(f"[ERROR] {parts[1]}")
+
+    else:
+        print(f"[ERROR] Server not ready to receive file.")
 
 
 def download_file(client_socket):
+    # Handles file download from server.
+    
+    # Flow:
+    # 1. User enters filename to download
+    # 2. Send DOWNLOAD command
+    # 3. Receive FILESIZE from server
+    # 4. Send READY signal
+    # 5. Receive encrypted file data
+    # 6. Decrypt and save file
+    # 7. Send confirmation
+
+    
+
     pass
 
 
