@@ -363,20 +363,44 @@ def main_menu(client_socket):
 
 def user_menu(client_socket, username):
     # Menu after successful login.
-    print("\n" + "=" * 60)
-    print(f"WELCOME, {username}")
-    print("=" * 60)
-    print("You are now logged in.")
-    print("[FINISH THIS IN STEP 4] Add file operations here.")
-    print("=" * 60)
 
-    input("\nPress Enter to logout...")
+    while True:
+        print("\n" + "=" * 60)
+        print(f"WELCOME, {username.upper()}!")
+        print("=" * 60)
+        # print("You are now logged in.")
+        # print("[FINISH THIS IN STEP 4] Add file operations here.")
+        print("1. Upload File")
+        print("2. Download File")
+        print("3. List Files")
+        print("4. Delete File")
+        print("5. Logout")
+        print("=" * 60)
 
-    # Send logout request
-    send_encrypted(client_socket, "LOGOUT")
-    response = receive_encrypted(client_socket)
-    print(f"[INFO] {response.split('|')[1] if '|' in response else response}")
+        choice = input("Enter choice: ").strip()
 
+        if choice == '1':
+            upload_file(client_socket)
+
+        elif choice == '2':
+            download_file(client_socket)
+
+        elif choice == '3':
+            list_files(client_socket)
+
+        elif choice == '4':
+            delete_file(client_socket)
+
+        elif choice == '5':
+            # Send logout request
+            send_encrypted(client_socket, "LOGOUT")
+            response = receive_encrypted(client_socket)
+            print(f"\n[INFO] {response.split('|')[1] if '|' in response else response}")
+            print("[GOODBYE] Logged out successfully!")
+            break
+
+        else:
+            print("[ERROR] Invalid choice")
 
 # ============================================================================
 # MAIN CLIENT
@@ -391,7 +415,7 @@ def main():
         try:
             # Connect to server
             print("=" * 60)
-            print("AUTHENTICATION CLIENT")
+            print("SECURE FILE SHARING SYSTEM - CLIENT")
             print("=" * 60)
             print(f"[CONNECTING] Connecting to {host}:{port}...")
             client_socket.connect((host, port))
