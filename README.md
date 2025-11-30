@@ -211,6 +211,8 @@ For a production system, the following improvements would be necessary:
 3. **Network Security:** Implement SSL/TLS for network encryption
 4. **Multi-threading:** Support multiple concurrent users
 5. **Database:** Use SQLite or PostgreSQL instead of text files
+6. **Password Management:** Allow users to change their passwords securely and implement secure password recovery mechanism.
+7. **Admin User and Privileged Access:** Create separate admin role with elevated privileges
 
 ## File Type Support
 
