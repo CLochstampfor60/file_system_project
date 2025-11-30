@@ -154,7 +154,7 @@ def upload_file(client_socket):
 
     # OPTIONAL FOR PRESENTATION PURPOSES ONLY!!!
     # Show encryption happening (in real-time)
-    print(f"[INFO] File content encrypted ({len(file_content)} bytes → {filesize} bytes.)")
+    print(f"[INFO] File content encrypted ({len(file_content)} bytes -> {filesize} bytes.)")
 
     # Send upload command: UPLOAD|filename|filesize
     message = f"UPLOAD|{filename}|{filesize}"
