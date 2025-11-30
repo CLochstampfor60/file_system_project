@@ -32,7 +32,11 @@ def caesar_decrypt(text, shift=3):
 def send_encrypted(sock, message):
     # Encrypts and sends a message over socket.
     encrypted = caesar_encrypt(message)
+    
+    # Shows encrypted text
+    print(f"[SENDING ENCRYPTED] {encrypted}")
     sock.send(encrypted.encode('utf-8'))
+    # Shows plain text
     print(f"[SENT] {message}")
 
 def receive_encrypted(sock):
