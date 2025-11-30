@@ -44,10 +44,10 @@ def receive_encrypted(sock):
 
     ###### FOR PRESENTATION PURPOSES ONLY!!!!! Remove this before PRODUCTION #####
     # Show both encrypted and decrypted text
-    print(f"📨 [ENCRYPTED] {encrypted}")
+    print(f"📨 [ENCRYPTED MESSAGE] {encrypted}")
 
     decrypted = caesar_decrypt(encrypted)
-    print(f"🔓 [DECRYPTED] {decrypted}")
+    print(f"🔓 [DECRYPTED MESSAGE] {decrypted}")
     # print(f"[RECEIVED] {decrypted}")
     print("-" * 60)
 
