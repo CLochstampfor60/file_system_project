@@ -34,10 +34,11 @@ def send_encrypted(sock, message):
     encrypted = caesar_encrypt(message)
     
     # Shows encrypted text
-    print(f"[SENDING ENCRYPTED] {encrypted}")
+    print(f"[ENCRYPTED REPLY] {encrypted}")
     sock.send(encrypted.encode('utf-8'))
     # Shows plain text
     print(f"[SENT] {message}")
+    print("-" * 60)
 
 def receive_encrypted(sock):
     # Receives and decrypts a message from socket.
