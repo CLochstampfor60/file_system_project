@@ -41,8 +41,16 @@ def receive_encrypted(sock):
     if not encrypted_bytes:
         return None
     encrypted = encrypted_bytes.decode('utf-8')
+
+    ###### FOR PRESENTATION PURPOSES ONLY!!!!! Remove this before PRODUCTION #####
+    # Show both encrypted and decrypted text
+    print(f"📨 [ENCRYPTED] {encrypted}")
+
     decrypted = caesar_decrypt(encrypted)
-    print(f"[RECEIVED] {decrypted}")
+    print(f"🔓 [DECRYPTED] {decrypted}")
+    # print(f"[RECEIVED] {decrypted}")
+    print("-" * 60)
+
     return decrypted
 
 # ============================================================================
