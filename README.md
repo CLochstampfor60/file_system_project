@@ -167,6 +167,17 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Transmits encrypted file data
    - Server decrypts and saves to user's directory
 
+<p align="center">
+   <!-- Client Uploads an Existing File to User's Server Folder/Account: Option 1 -->
+   <img src="Images\client_upload_file_success.jpg" width="350" title="hover text">
+   <!-- Server Upload Response to Client: Success -->
+   <img src="Images\server_upload_file_response.jpg" width="350" title="hover text">
+   <!-- Client List Current File(s) in Server Folder/Account: Option 3 -->
+   <img src="Images\client_list_files.jpg" width="350" title="hover text">
+      <!-- Server New User Login: Success -->
+   <img src="Images\server_list_response.jpg" width="350" title="hover text">
+</p>
+
 2. **Download:**
    - Client sends `DOWNLOAD|filename` command
    - Server encrypts file content
