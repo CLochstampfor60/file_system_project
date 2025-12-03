@@ -174,7 +174,7 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    <img src="Images\server_upload_file_response.jpg" width="350" title="hover text">
    <!-- Client List Current File(s) in Server Folder/Account: Option 3 -->
    <img src="Images\client_list_files.jpg" width="350" title="hover text">
-      <!-- Server New User Login: Success -->
+      <!-- Server List Response: Success-->
    <img src="Images\server_list_response.jpg" width="350" title="hover text">
 </p>
 
@@ -184,15 +184,44 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Sends encrypted data to client
    - Client decrypts and saves file
 
+<p align="center">
+   <!-- Client Downloads File from User's Server Folder/Account onto local desktop as a New File: Option 2 -->
+   <img src="Images\client_download_file.jpg" width="350" title="hover text">
+   <!-- Server Download Response to Client: Success -->
+   <img src="Images\server_download_response.jpg" width="350" title="hover text">
+</p>
+
 3. **List:**
    - Client sends `LIST` command
    - Server scans user's directory
    - Returns list of filenames
 
-4. **Delete:**
+   <p align="center">
+      <!-- Client List Current File(s) in Server Folder/Account: Option 3 -->
+      <img src="Images\client_list_files.jpg" width="350" title="hover text">
+      <!-- Server List Response: Success-->
+      <img src="Images\server_list_response.jpg" width="350" title="hover text">
+   </p>
+
+
+4. **Delete & Logout:**
    - Client sends `DELETE|filename` command
    - Server removes file from user's directory
    - Returns confirmation
+
+   <p align="center">
+      <!-- Client Delete Existing file in User's Server Folder/Account: Option 4 -->
+      <img src="Images\client_delete_file.jpg" width="350" title="hover text">
+      <!-- Server Delete Response to Client: Success -->
+      <img src="Images\server_deleted_file_respons.jpg" width="350" title="hover text">
+      <!-- Client List Current File(s) in Server Folder/Account: Option 3 (Empty Now)-->
+      <img src="Images\client_list_no_files.jpg" width="350" title="hover text">
+      <!-- Server List Response: Success-->
+      <img src="Images\server_no_files_response.jpg" width="350" title="hover text">
+      <!-- Client Logouts out, Server Logout Response Message (Client's Automatically Closes Out): Option 5-->
+      <img src="Images/server_logout.response.jpg" width="350" title="hover text">
+   </p>
+
 
 ## Code Requirements Met
 
