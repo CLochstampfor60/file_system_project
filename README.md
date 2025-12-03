@@ -131,14 +131,23 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Returns encrypted success/error message
    
 <p align="center">
-   <!-- Start Server -->
-   <img src="Images/server_starts.jpg" width="350" title="hover text">
-   <!-- Start Client -->
-  <img src="Images\client_auth_starts.jpg" width="350" title="hover text">
-  <!-- Client New User Registration: Option 2 -->
-   <img src="Images\client_new_user_registration.jpg" width="350" title="hover text">
-   <!-- Server New User Registration Response Success -->
-   <img src="Images\server_registration_success.jpg" width="350" title="hover text">
+   <img src="Images/server_starts.jpg" width="350"><br>
+   <em><strong>Screenshot 1:</strong> Server Starts and Listens on Port 5555</em>
+</p>
+
+<p align="center">
+   <img src="Images/client_auth_starts.jpg" width="350"><br>
+   <em><strong>Screenshot 2:</strong> Client Application Starts</em>
+</p>
+
+<p align="center">
+   <img src="Images/client_new_user_registration.jpg" width="350"><br>
+   <em><strong>Screenshot 3:</strong> Client New User Registration (Option 2)</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_registration_success.jpg" width="350"><br>
+   <em><strong>Screenshot 4:</strong> Server Registration Success Response</em>
 </p>
 
 
