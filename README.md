@@ -159,22 +159,22 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
 
 <p align="center">
    <img src="Images/client_login_failed.jpg" width="350"><br>
-   <em><strong>Screenshot 8:</strong> Client Login Attempt Failed</em>
+   <em><strong>Screenshot 5:</strong> Client Login Attempt Failed</em>
 </p>
 
 <p align="center">
    <img src="Images/server_login_failed_response.jpg" width="350"><br>
-   <em><strong>Screenshot 7:</strong> Server Login Failed Response</em>
+   <em><strong>Screenshot 6:</strong> Server Login Failed Response</em>
 </p>
 
 <p align="center">
    <img src="Images/client_login_success.jpg" width="350"><br>
-   <em><strong>Screenshot 6:</strong> Client Login Success</em>
+   <em><strong>Screenshot 7:</strong> Client Login Success</em>
 </p>
 
 <p align="center">
    <img src="Images/server_login_success_response.jpg" width="350"><br>
-   <em><strong>Screenshot 5:</strong> Server Login Success Response</em>
+   <em><strong>Screenshot 8:</strong> Server Login Success Response</em>
 </p>
 
 ### File Operations
@@ -187,22 +187,22 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
 
 <p align="center">
    <img src="Images/client_upload_file_success.jpg" width="350"><br>
-   <em><strong>Screenshot 12:</strong> Client Uploads File to Server (Option 1)</em>
+   <em><strong>Screenshot 9:</strong> Client Uploads File to Server (Option 1)</em>
 </p>
 
 <p align="center">
    <img src="Images/server_upload_file_response.jpg" width="350"><br>
-   <em><strong>Screenshot 11:</strong> Server Upload Success Response</em>
+   <em><strong>Screenshot 10:</strong> Server Upload Success Response</em>
 </p>
 
 <p align="center">
    <img src="Images/client_list_files.jpg" width="350"><br>
-   <em><strong>Screenshot 10:</strong> Client Lists Files in Server Account (Option 3)</em>
+   <em><strong>Screenshot 11:</strong> Client Lists Files in Server Account (Option 3)</em>
 </p>
 
 <p align="center">
    <img src="Images/server_list_response.jpg" width="350"><br>
-   <em><strong>Screenshot 9:</strong> Server List Response</em>
+   <em><strong>Screenshot 12:</strong> Server List Response</em>
 </p>
 
 2. **Download:**
@@ -213,12 +213,12 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
 
 <p align="center">
    <img src="Images/client_download_file.jpg" width="350"><br>
-   <em><strong>Screenshot 14:</strong> Client Downloads File from Server (Option 2)</em>
+   <em><strong>Screenshot 13:</strong> Client Downloads File from Server (Option 2)</em>
 </p>
 
 <p align="center">
    <img src="Images/server_download_response.jpg" width="350"><br>
-   <em><strong>Screenshot 13:</strong> Server Download Success Response</em>
+   <em><strong>Screenshot 14:</strong> Server Download Success Response</em>
 </p>
 
 3. **List:**
@@ -228,12 +228,12 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
 
 <p align="center">
    <img src="Images/client_list_files.jpg" width="350"><br>
-   <em><strong>Screenshot 16:</strong> Client Lists Current Files (Option 3)</em>
+   <em><strong>Screenshot 15:</strong> Client Lists Current Files (Option 3)</em>
 </p>
 
 <p align="center">
    <img src="Images/server_list_response.jpg" width="350"><br>
-   <em><strong>Screenshot 15:</strong> Server List Response</em>
+   <em><strong>Screenshot 16:</strong> Server List Response</em>
 </p>
 
 
@@ -244,12 +244,12 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
 
 <p align="center">
    <img src="Images/client_delete_file.jpg" width="350"><br>
-   <em><strong>Screenshot 21:</strong> Client Deletes File from Server (Option 4)</em>
+   <em><strong>Screenshot 17:</strong> Client Deletes File from Server (Option 4)</em>
 </p>
 
 <p align="center">
    <img src="Images/server_deleted_file_respons.jpg" width="350"><br>
-   <em><strong>Screenshot 20:</strong> Server Delete Success Response</em>
+   <em><strong>Screenshot 18:</strong> Server Delete Success Response</em>
 </p>
 
 <p align="center">
@@ -259,12 +259,12 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
 
 <p align="center">
    <img src="Images/server_no_files_response.jpg" width="350"><br>
-   <em><strong>Screenshot 18:</strong> Server Empty List Response</em>
+   <em><strong>Screenshot 20:</strong> Server Empty List Response</em>
 </p>
 
 <p align="center">
    <img src="Images/server_logout.response.jpg" width="350"><br>
-   <em><strong>Screenshot 17:</strong> Server Logout Response (Option 5)</em>
+   <em><strong>Screenshot 21:</strong> Server Logout Response (Option 5)</em>
 </p>
 
 
