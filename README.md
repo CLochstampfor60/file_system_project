@@ -131,7 +131,14 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Returns encrypted success/error message
    
 <p align="center">
+   <!-- Start Server -->
+   <img src="Images/server_starts.jpg" width="350" title="hover text">
+   <!-- Start Client -->
   <img src="Images\client_auth_starts.jpg" width="350" title="hover text">
+  <!-- Client New User Registration: Option 2 -->
+   <img src="Images\client_new_user_registration.jpg" width="350" title="hover text">
+   <!-- Server New User Registration Response Success -->
+   <img src="Images\server_registration_success.jpg" width="350" title="hover text">
 </p>
 
 
@@ -140,6 +147,17 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Server verifies credentials against `users.txt`
    - Establishes authenticated session if valid
    - Returns encrypted success/error message
+
+<p align="center">
+   <!-- Client New User Login: Failed -->
+   <img src="Images\client_login_failed.jpg" width="350" title="hover text">
+   <!-- Server New User Login Response: Failed/Error -->
+   <img src="Images\server_login_failed_response.jpg" width="350" title="hover text">
+   <!-- Client New User Login: Success -->
+   <img src="Images\client_login_success.jpg" width="350" title="hover text">
+      <!-- Server New User Login: Success -->
+   <img src="Images\server_login_success_response.jpg" width="350" title="hover text">
+</p>
 
 ### File Operations
 
