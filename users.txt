@@ -1,5 +1,0 @@
-john|secure123
-john2|secure123
-demo123|demo123
-shrek123|password123
-woody123|password123
