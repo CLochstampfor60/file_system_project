@@ -129,6 +129,11 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Server checks if username exists
    - Saves to `users.txt` if available
    - Returns encrypted success/error message
+   
+<p align="center">
+  <img src="Images\client_auth_starts.jpg" width="350" title="hover text">
+</p>
+
 
 2. **Login:**
    - Client sends encrypted: `LOGIN|username|password`
