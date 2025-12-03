@@ -158,14 +158,23 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Returns encrypted success/error message
 
 <p align="center">
-   <!-- Client New User Login: Failed -->
-   <img src="Images\client_login_failed.jpg" width="350" title="hover text">
-   <!-- Server New User Login Response: Failed/Error -->
-   <img src="Images\server_login_failed_response.jpg" width="350" title="hover text">
-   <!-- Client New User Login: Success -->
-   <img src="Images\client_login_success.jpg" width="350" title="hover text">
-      <!-- Server New User Login: Success -->
-   <img src="Images\server_login_success_response.jpg" width="350" title="hover text">
+   <img src="Images/client_login_failed.jpg" width="350"><br>
+   <em><strong>Screenshot 8:</strong> Client Login Attempt Failed</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_login_failed_response.jpg" width="350"><br>
+   <em><strong>Screenshot 7:</strong> Server Login Failed Response</em>
+</p>
+
+<p align="center">
+   <img src="Images/client_login_success.jpg" width="350"><br>
+   <em><strong>Screenshot 6:</strong> Client Login Success</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_login_success_response.jpg" width="350"><br>
+   <em><strong>Screenshot 5:</strong> Server Login Success Response</em>
 </p>
 
 ### File Operations
@@ -177,14 +186,23 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Server decrypts and saves to user's directory
 
 <p align="center">
-   <!-- Client Uploads an Existing File to User's Server Folder/Account: Option 1 -->
-   <img src="Images\client_upload_file_success.jpg" width="350" title="hover text">
-   <!-- Server Upload Response to Client: Success -->
-   <img src="Images\server_upload_file_response.jpg" width="350" title="hover text">
-   <!-- Client List Current File(s) in Server Folder/Account: Option 3 -->
-   <img src="Images\client_list_files.jpg" width="350" title="hover text">
-      <!-- Server List Response: Success-->
-   <img src="Images\server_list_response.jpg" width="350" title="hover text">
+   <img src="Images/client_upload_file_success.jpg" width="350"><br>
+   <em><strong>Screenshot 12:</strong> Client Uploads File to Server (Option 1)</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_upload_file_response.jpg" width="350"><br>
+   <em><strong>Screenshot 11:</strong> Server Upload Success Response</em>
+</p>
+
+<p align="center">
+   <img src="Images/client_list_files.jpg" width="350"><br>
+   <em><strong>Screenshot 10:</strong> Client Lists Files in Server Account (Option 3)</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_list_response.jpg" width="350"><br>
+   <em><strong>Screenshot 9:</strong> Server List Response</em>
 </p>
 
 2. **Download:**
@@ -194,10 +212,13 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Client decrypts and saves file
 
 <p align="center">
-   <!-- Client Downloads File from User's Server Folder/Account onto local desktop as a New File: Option 2 -->
-   <img src="Images\client_download_file.jpg" width="350" title="hover text">
-   <!-- Server Download Response to Client: Success -->
-   <img src="Images\server_download_response.jpg" width="350" title="hover text">
+   <img src="Images/client_download_file.jpg" width="350"><br>
+   <em><strong>Screenshot 14:</strong> Client Downloads File from Server (Option 2)</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_download_response.jpg" width="350"><br>
+   <em><strong>Screenshot 13:</strong> Server Download Success Response</em>
 </p>
 
 3. **List:**
@@ -205,12 +226,15 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Server scans user's directory
    - Returns list of filenames
 
-   <p align="center">
-      <!-- Client List Current File(s) in Server Folder/Account: Option 3 -->
-      <img src="Images\client_list_files.jpg" width="350" title="hover text">
-      <!-- Server List Response: Success-->
-      <img src="Images\server_list_response.jpg" width="350" title="hover text">
-   </p>
+<p align="center">
+   <img src="Images/client_list_files.jpg" width="350"><br>
+   <em><strong>Screenshot 16:</strong> Client Lists Current Files (Option 3)</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_list_response.jpg" width="350"><br>
+   <em><strong>Screenshot 15:</strong> Server List Response</em>
+</p>
 
 
 4. **Delete & Logout:**
@@ -218,18 +242,30 @@ This demonstrates encryption in **both directions** (clientâ†’server and serverâ
    - Server removes file from user's directory
    - Returns confirmation
 
-   <p align="center">
-      <!-- Client Delete Existing file in User's Server Folder/Account: Option 4 -->
-      <img src="Images\client_delete_file.jpg" width="350" title="hover text">
-      <!-- Server Delete Response to Client: Success -->
-      <img src="Images\server_deleted_file_respons.jpg" width="350" title="hover text">
-      <!-- Client List Current File(s) in Server Folder/Account: Option 3 (Empty Now)-->
-      <img src="Images\client_list_no_files.jpg" width="350" title="hover text">
-      <!-- Server List Response: Success-->
-      <img src="Images\server_no_files_response.jpg" width="350" title="hover text">
-      <!-- Client Logouts out, Server Logout Response Message (Client's Automatically Closes Out): Option 5-->
-      <img src="Images/server_logout.response.jpg" width="350" title="hover text">
-   </p>
+<p align="center">
+   <img src="Images/client_delete_file.jpg" width="350"><br>
+   <em><strong>Screenshot 21:</strong> Client Deletes File from Server (Option 4)</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_deleted_file_respons.jpg" width="350"><br>
+   <em><strong>Screenshot 20:</strong> Server Delete Success Response</em>
+</p>
+
+<p align="center">
+   <img src="Images/client_list_no_files.jpg" width="350"><br>
+   <em><strong>Screenshot 19:</strong> Client Lists Files (Now Empty)</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_no_files_response.jpg" width="350"><br>
+   <em><strong>Screenshot 18:</strong> Server Empty List Response</em>
+</p>
+
+<p align="center">
+   <img src="Images/server_logout.response.jpg" width="350"><br>
+   <em><strong>Screenshot 17:</strong> Server Logout Response (Option 5)</em>
+</p>
 
 
 ## Code Requirements Met
