@@ -1,7 +1,6 @@
 #auth_server.py
-
-# Step 3B: Authentication Server
 # Handles user registration and login over encrypted network connection
+# GitHub account project location: https://github.com/CLochstampfor60/file_system_project
 
 import socket
 import os

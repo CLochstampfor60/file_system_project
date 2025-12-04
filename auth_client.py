@@ -1,7 +1,6 @@
 # auth_client.py
-
-# Step 3B: Authentication Client
 # Connects to authentication server for registration and login
+# GitHub account project location: https://github.com/CLochstampfor60/file_system_project
 
 import socket
 import os
