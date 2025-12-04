@@ -312,6 +312,8 @@ This project satisfies all Milestone Project requirements:
 - **Transport:** Localhost only (127.0.0.1)
 
 ### Production Recommendations
+<!-- More details about the below recommendations in my local notes. -->
+<!-- Check my local notes before working through the below program upgrades. -->
 For a production system, the following improvements would be necessary:
 
 1. **Stronger Encryption:** Replace Caesar cipher with AES-256 or RSA
@@ -321,6 +323,12 @@ For a production system, the following improvements would be necessary:
 5. **Database:** Use SQLite or PostgreSQL instead of text files
 6. **Password Management:** Allow users to change their passwords securely and implement secure password recovery mechanism.
 7. **Admin User and Privileged Access:** Create separate admin role with elevated privileges
+8. **Communication Logging and Audit Trail**
+   - Log all client-server communications to files with timestamps
+   - Record both encrypted and decrypted messages for security analysis
+   - Track user activity (logins, uploads, downloads, deletions)
+   - Monitor failed authentication attempts for security threats
+   - Enable log rotation and admin access to historical logs
 
 ## File Type Support
 
