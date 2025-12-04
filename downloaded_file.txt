@@ -1,0 +1,6 @@
+## testfile.txt
+-
+This is a test file for my secure file sharing system!
+-
+This is a TEXT file using Notepad (.txt).
+--------------------------------------------------
